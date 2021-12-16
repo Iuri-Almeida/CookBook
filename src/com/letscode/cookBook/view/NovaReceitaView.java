@@ -7,8 +7,6 @@ import com.letscode.cookBook.enums.Categoria;
 import com.letscode.cookBook.enums.TipoMedida;
 import com.letscode.cookBook.enums.TipoRendimento;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Scanner;
 
 public class NovaReceitaView {
@@ -19,14 +17,6 @@ public class NovaReceitaView {
 
     public NovaReceitaView() {
         this.scanner = new Scanner(System.in);
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public Categoria getCategoria() {
-        return categoria;
     }
 
     public Receita getReceita() {
@@ -73,22 +63,23 @@ public class NovaReceitaView {
         ScreenUtil.printTextLine("TEMPO DE PREPARO\n");
 
         System.out.print("Qual o tempo de preparo? (minutos) ");
-        receita.setTempoPreparo(scanner.nextInt());
+        receita.setTempoPreparo(scanner.nextInt() * 60);
     }
 
     private void askRendimento() {
         ScreenUtil.clearScreen();
         ScreenUtil.printTextLine("RENDIMENTO\n");
 
-        System.out.print("Qual a quantidade? ");
-        int quantidade = scanner.nextInt();
-
-        System.out.println("Qual o tipo? ");
+        System.out.println("Qual o tipo da quantidade?\n");
         for (TipoRendimento rend : TipoRendimento.values()) {
             System.out.printf("%d - %s\n", rend.ordinal(), rend.name());
         }
 
+        System.out.println();
         int rend = scanner.nextInt();
+
+        System.out.print("Qual a quantidade? ");
+        int quantidade = scanner.nextInt();
 
         receita.setRendimento(new Rendimento(quantidade, TipoRendimento.values()[rend]));
     }
@@ -107,15 +98,17 @@ public class NovaReceitaView {
             System.out.print("Qual o nome? ");
             String nome = scanner.nextLine();
 
-            System.out.print("Qual a quantidade? ");
-            double quantidade = scanner.nextDouble();
-
-            System.out.println("Qual o tipo? ");
+            System.out.println("Qual o tipo da quantidade?\n");
             for (TipoMedida med : TipoMedida.values()) {
                 System.out.printf("%d - %s\n", med.ordinal(), med.name());
             }
 
+            System.out.println();
             int med = scanner.nextInt();
+            scanner.nextLine();
+
+            System.out.print("Qual a quantidade? ");
+            double quantidade = scanner.nextDouble();
             scanner.nextLine();
 
             Ingrediente[] ingredientes = new Ingrediente[]{new Ingrediente(nome, quantidade, TipoMedida.values()[med])};
