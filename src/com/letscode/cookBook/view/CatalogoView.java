@@ -148,8 +148,9 @@ public class CatalogoView {
                     search(sc);
                     break;
                 default:
-                    ScreenUtil.printTextLine("Opção inválida", 80);
-                    ScreenUtil.printTextLine("#: ", 80);
+                    ScreenUtil.printTextLine("Opção inválida\n", 80);
+                    ScreenUtil.printTextLine("Clique ENTER para continuar");
+                    sc.nextLine();
             }
         } while (true);
     }

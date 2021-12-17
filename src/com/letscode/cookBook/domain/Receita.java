@@ -57,9 +57,7 @@ public class Receita {
     }
 
     public void setIngredientes(Ingrediente[] ingredientes) {
-        for (Ingrediente item : ingredientes) {
-            this.ingredientes.add(item);
-        }
+        this.ingredientes.addAll(Arrays.asList(ingredientes));
     }
 
     public String[] getModoPreparo() {
